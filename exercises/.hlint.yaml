@@ -1,0 +1,11 @@
+
+- ignore: {name: Use foldr, within: Chapter_1}
+
+- ignore: {name: Eta reduce, within: Chapter_3.apply}
+
+- ignore: {name: Redundant lambda, within: Chapter_4.mult}
+- ignore: {name: Collapse lambdas, within: Chapter_4.mult}
+
+- ignore: {name: Use foldr, within: Chapter_6}
+
+- ignore: {within: Chapter_7}

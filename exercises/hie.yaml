@@ -1,0 +1,13 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "haskell-exercises-shmup:lib"
+
+    - path: "./app/Main.hs"
+      component: "haskell-exercises-shmup:exe:haskell-exercises-shmup-exe"
+
+    - path: "./app/Paths_haskell_exercises_shmup.hs"
+      component: "haskell-exercises-shmup:exe:haskell-exercises-shmup-exe"
+
+    - path: "./test"
+      component: "haskell-exercises-shmup:test:haskell-exercises-shmup-test"

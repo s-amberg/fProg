@@ -1,0 +1,84 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.34.4.
+--
+-- see: https://github.com/sol/hpack
+
+name:           haskell-exercises-shmup
+version:        0.1.0.0
+description:    Please see the README at <https://github.com/githubuser/haskell-exercises-shmup#readme>
+homepage:       https://github.com/githubuser/haskell-exercises-shmup#readme
+bug-reports:    https://github.com/githubuser/haskell-exercises-shmup/issues
+author:         Farhad Mehta
+maintainer:     farhad.mehta@ost.ch
+copyright:      2021 Farhad Mehta
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/haskell-exercises-shmup
+
+library
+  exposed-modules:
+      BinarySearchTree
+      Chapter_01
+      Chapter_02
+      Chapter_03
+      Chapter_04
+      Chapter_05
+      Chapter_06
+      Chapter_07
+      Chapter_08
+      Chapter_10
+      Chapter_12
+      Chapter_16
+  other-modules:
+      Paths_haskell_exercises_shmup
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+executable haskell-exercises-shmup-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_haskell_exercises_shmup
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , haskell-exercises-shmup
+  default-language: Haskell2010
+
+test-suite haskell-exercises-shmup-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      BinarySearchTree_Spec
+      Chapter_01_Spec
+      Chapter_02_Spec
+      Chapter_03_Spec
+      Chapter_04_Spec
+      Chapter_05_Spec
+      Chapter_06_Spec
+      Chapter_07_Spec
+      Chapter_08_Spec
+      Chapter_12_Spec
+      Paths_haskell_exercises_shmup
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      QuickCheck
+    , base >=4.7 && <5
+    , genvalidity-hspec
+    , haskell-exercises-shmup
+    , hspec
+  default-language: Haskell2010

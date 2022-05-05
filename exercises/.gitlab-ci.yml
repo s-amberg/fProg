@@ -1,0 +1,24 @@
+# GitLab CI configuration to build and test Haskell stack projects.
+# (c) Farhad Mehta 2021
+
+image: registry.gitlab.ost.ch:45023/plfm/internal/haskell-docker-environment:lts-18-8
+# The following should also work, just take much longer since docker will first need to download all dependencies every time it is run.
+# image: haskell
+# image: fpco/stack-build:lts-18.8
+
+stages:
+  - build
+  - test
+  
+stack_build:
+  stage: build
+  script:
+    - stack build
+  artifacts:
+    paths:
+      - .stack-work
+
+stack_test:
+  stage: test
+  script:
+    - stack test
