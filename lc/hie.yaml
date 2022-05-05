@@ -1,0 +1,13 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "lc:lib"
+
+    - path: "./app/Main.hs"
+      component: "lc:exe:lc-exe"
+
+    - path: "./app/Paths_lc.hs"
+      component: "lc:exe:lc-exe"
+
+    - path: "./test"
+      component: "lc:test:lc-test"
