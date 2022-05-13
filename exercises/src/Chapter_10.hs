@@ -24,7 +24,21 @@ module Chapter_10 where
 -- The string has 7 characters
 
 strlen :: IO ()
-strlen = undefined 
+strlen = do 
+    _ <- putStr "Enter a string: ";
+    l <- inputLen
+    putStr ("The string has " ++ show l ++ " characters")
+
+inputLen :: Num a => IO a
+inputLen = do 
+    c <- getChar
+    if c == '\n' then
+        return 0
+    else 
+        do
+            xs <- inputLen 
+            return (1 + xs)
+    
 
 
 
@@ -39,8 +53,7 @@ strlen = undefined
 -- Note: If you are trying this within ghc, please note that putStr is already defined in the Prelude. Use the name myPutStr which is currently undefined instead.
 
 myPutStr :: String -> IO ()
-myPutStr = undefined 
-
+myPutStr xs = sequence_ [putChar x| x <- xs ++ "\n"] 
 
 -- Exercise 10.4 (**)
 -- Define an action adder :: IO () that reads a given number of integers from the keyboard, one per line, and displays their sum. For example:
@@ -63,9 +76,17 @@ myPutStr = undefined
 -- show :: Show a => a -> String
 
 adder :: IO ()
-adder = undefined
+adder = do
+    putStr "How many numbers? "
+    x <- getLine 
+    adder' (read x) 0
 adder' :: Int -> Int -> IO ()
-adder' = undefined
+adder' steps total = do
+    if steps == 0 then
+        putStr ("The total is " ++ show total ++ "\n")
+    else do   
+        toAdd <- getLine 
+        adder' (steps - 1) (total + read toAdd)
 
 
 -- Exercise 10.5 (***)
@@ -73,7 +94,9 @@ adder' = undefined
 -- Note: Use the name adderUsingSequence for your solution to avoid a name clash with the previous solution. 
 
 adderUsingSequence :: IO ()
-adderUsingSequence = undefined
-
-
+adderUsingSequence = do
+    putStr "How many numbers? "
+    x <- getLine 
+    nums <- sequence [getLine | _ <- [1 .. read x]]
+    putStr ("Total is " ++ show (sum (map read nums)) ++ "\n")
 

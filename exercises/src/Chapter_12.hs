@@ -42,16 +42,19 @@ data Maybe a = Nothing | Just a
 
 
 instance Functor Maybe where
-  -- fmap :: ???
-  fmap = undefined
+  fmap _ Nothing = Nothing
+  fmap f (Just a) = Just (f a)
+
 instance Applicative Maybe where
-  -- pure :: ???
-  pure = undefined
-  -- (<*>) :: ???
-  (<*>) = undefined
+  pure a = Just a
+  (<*>) (Nothing) (Nothing) = Nothing
+  (<*>) (Nothing) (Just a) = Nothing
+  (<*>) (Just f) (Nothing) = Nothing
+  (<*>) (Just f) (Just a) = Just (f a)
+
 instance Monad Maybe where
-  -- (>>=) :: ???
-  (>>=) = undefined
+  (>>=) Nothing fb = Nothing
+  (>>=) (Just a) fb = fb a
 
 
 
@@ -64,8 +67,8 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
     deriving (Read, Show, Eq, Generic)
 
 instance Functor Tree where
-    -- fmap :: ???
-    fmap = undefined
+    fmap f Leaf = Leaf
+    fmap f (Node a v b) = Node (fmap f a) (f v) (fmap f b)
 
 
 -- Note: Just in case you are wondering, this type of tree does not have an appropriate instance of the Applicative or Monar class. Take a look at https://dkalemis.wordpress.com/2014/03/22/trees-as-monads/ for an explanation. 
